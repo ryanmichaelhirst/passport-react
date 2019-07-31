@@ -1,6 +1,6 @@
 ## Passport React
 
-Finished project for the youtube tutorial series @ https://www.youtube.com/user/rmbh4211995
+Finished project for the youtube tutorial series @ https://www.youtube.com/watch?v=A23O4aUftXk
 
 This project is a mock app that allows you to use OAuth2 login authentication with some 
 of your favorite socials including Facebook, Instagram, Google, Twitch, Github, and Amazon.
