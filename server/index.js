@@ -185,9 +185,9 @@ if (process.env.NODE_ENV === "production") {
 }
 
 if (process.env.NODE_ENV === "production") {
-    const privateKey = fs.readFileSync('/etc/letsencrypt/live/passport-demo.com/privkey.pem', 'utf8');
-    const certificate = fs.readFileSync('/etc/letsencrypt/live/passport-demo.com/cert.pem', 'utf8');
-    const ca = fs.readFileSync('/etc/letsencrypt/live/passport-demo.com/chain.pem', 'utf8');
+    const privateKey = fs.readFileSync('/etc/letsencrypt/live/learnpassportjs.com/privkey.pem', 'utf8');
+    const certificate = fs.readFileSync('/etc/letsencrypt/live/learnpassportjs.com/cert.pem', 'utf8');
+    const ca = fs.readFileSync('/etc/letsencrypt/live/learnpassportjs.com/chain.pem', 'utf8');
     const credentials = {
         key: privateKey,
         cert: certificate,

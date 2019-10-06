@@ -20,6 +20,12 @@ pre {
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
+button {
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
 .btn {
     text-decoration: none;
     color: white;
@@ -179,6 +185,23 @@ pre {
 .selected {
     background-color: var(--primary-red);
     color: white;
+}
+
+.footer {
+    padding: 10px;
+    border: 1px solid #d4d7dd;
+    background-color: #eae9e9;
+    color: #45454d;
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    transition: all ease-in-out 0.6s;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px);
 }
 
 @media (max-width: 860px) {

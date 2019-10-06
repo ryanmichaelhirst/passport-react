@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "passport-demo",
+      "name": "learnpassportjs",
       "script": "npm run start",
       "args": "one two",
       "instances": 1,
