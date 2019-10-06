@@ -1,17 +1,16 @@
 {
-  "name": "passport-starter",
+  "name": "passport-demo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.2.1",
     "@material-ui/icons": "^4.2.1",
     "chalk": "^2.4.2",
-    "concurrently": "^4.1.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "http-proxy-middleware": "^0.19.1",
-    "lodash": "^4.17.15",
     "nodemon": "^1.19.1",
+    "npm-run-all": "^4.1.5",
     "passport": "^0.4.0",
     "passport-amazon": "^1.0.0",
     "passport-facebook": "^3.0.0",
@@ -20,34 +19,15 @@
     "passport-instagram": "^1.0.0",
     "passport-spotify": "^1.0.1",
     "passport-twitch.js": "0.0.7",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-router": "^5.0.1",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1"
+    "pm2": "^3.5.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "run-p start:** server",
+    "start:app": "cd client && npm run start",
+    "production": "run-p production:** server",
+    "production:build": "cd client && npm run build",
     "server": "nodemon server/index.js",
-    "dev": "concurrently --kill-others \"npm run start\" \"npm run server\" "
-  },
-  "proxy": "http://localhost:5000",
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "dev": "pm2 startOrReload ecosystem.json --env development",
+    "prod": "pm2 startOrReload prod-ecosystem.json --env production"
   }
 }

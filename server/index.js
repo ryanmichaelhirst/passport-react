@@ -1,5 +1,9 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
+const http = require('http');
+const https = require('https');
+
 const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
 const AmazonStrategy = require("passport-amazon").Strategy;
@@ -10,6 +14,7 @@ const SpotifyStrategy = require("passport-spotify").Strategy;
 const TwitchStrategy = require("passport-twitch.js").Strategy;
 const keys = require("../config");
 const chalk = require("chalk");
+
 let user = {};
 
 passport.serializeUser((user, cb) => {
@@ -172,5 +177,30 @@ app.get("/auth/logout", (req, res) => {
     res.redirect("/");
 });
 
-const PORT = 5000;
-app.listen(PORT);
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+    app.get('/', function(req, res) {
+        res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    });
+}
+
+if (process.env.NODE_ENV === "production") {
+    const privateKey = fs.readFileSync('/etc/letsencrypt/live/passport-demo.com/privkey.pem', 'utf8');
+    const certificate = fs.readFileSync('/etc/letsencrypt/live/passport-demo.com/cert.pem', 'utf8');
+    const ca = fs.readFileSync('/etc/letsencrypt/live/passport-demo.com/chain.pem', 'utf8');
+    const credentials = {
+        key: privateKey,
+        cert: certificate,
+        ca: ca
+    };
+
+    https.createServer(credentials, app).listen(443, () => {
+        console.log('HTTPS Server running on port 443');
+    });
+    http.createServer(function (req, res) {
+        res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+        res.end();
+    }).listen(80);
+} else if (process.env.NODE_ENV === "development") {
+    app.listen(5000);
+}
